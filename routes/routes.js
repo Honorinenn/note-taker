@@ -33,8 +33,10 @@ module.exports = app => {
         
                 notes = JSON.parse(data);
                 let newNote = req.body;
+                newNote.id = Math.floor(Math.random() * 9999)
+
                 notes.push(newNote);
-                updateDb();
+                updateDb(notes);
                 console.log("Added new note: "+newNote.title);
                 res.json(notes);
             })
@@ -63,9 +65,16 @@ module.exports = app => {
                 if (err) throw err;
         
                 notes = JSON.parse(data);
-                notes.splice(req.params.id, 1);
-            updateDb();
+                for(var i=0; i < notes.length; i++){
+                    console.log (req.params.id)
+                    if(notes[i].id === Number(req.params.id)){
+                        notes.splice(i,1)
+                    }
+                }
+                
+            updateDb(notes);
             console.log("Deleted note with id "+req.params.id);
+            res.json(notes)
             })
 
             
@@ -85,7 +94,7 @@ module.exports = app => {
         });
 
         //updates the json file whenever a note is added or deleted
-        function updateDb() {
+        function updateDb(notes) {
             fs.writeFile("db/db.json",JSON.stringify(notes,'\t'),err => {
                 if (err) throw err;
                 return true;
