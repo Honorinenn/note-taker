@@ -1,6 +1,7 @@
 # note-taker
 
-This application is a note taker application that is used to write and save notes. It is uses Express.js and it saves, and and retrieves note data from a JSON file. It is deployed on heroku through the following link 
+This application is a note taker application that is used to write and save notes. It is uses Express.js and it saves, and and retrieves note data from a JSON file. It is deployed on heroku through the following link:
+https://note1t.herokuapp.com/
 
 ![License badge](https://img.shields.io/badge/license-MIT-builtinModules.svg)
      
